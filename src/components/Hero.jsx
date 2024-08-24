@@ -1,5 +1,6 @@
 import React from 'react'
 import Heroleft from './Heroleft'
+import Heroimg from './gymhero.webp'
 
 
 export default function Hero() {
