@@ -12,7 +12,7 @@ export default function Heroleft() {
         FitFlow
         </p>
  
-        <p className='lg:w-2/6 w-4/6 text-white text-sm lg:text-xl'>
+        <p className='lg:w-2/6 w-4/6 text-white text-sm lg:text-2xl'>
         The ultimate fitness companion designed to help you achieve your health goals. Whether you're a beginner or a seasoned athlete, <span className='text-greenish-yellow'>FitFlow</span> offers personalized workout plans, progress tracking, and expert guidance right at your fingertips. Join us and take the first step towards a stronger, healthier you.
         </p>
         <button className='border-2 border-greenish-yellow lg:text-2xl text-md text-greenish-yellow mt-3 lg:mt-6 lg:p-5 p-2 rounded-lg hover:text-white'>
