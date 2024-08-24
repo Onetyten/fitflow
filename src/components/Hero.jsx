@@ -1,11 +1,16 @@
 import React from 'react'
+import Heroleft from './Heroleft'
+
 
 export default function Hero() {
   return (
-    <div>
+    <div className='flex flex-col items-center h-screen relative'>
+      <Heroleft/>
+      <div className='flex-1'>
 
-        
-
+      </div>
+      <img src='src/images/gymhero.webp' alt="" className='lg:w-1/4 w-2/5 absolute bottom-0 right-0'/>
     </div>
+    
   )
 }
