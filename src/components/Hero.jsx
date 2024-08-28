@@ -10,7 +10,7 @@ export default function Hero() {
       <div className='flex-1'>
 
       </div>
-      <img src={Heroimg} alt="" className='lg:w-1/4 w-2/5 absolute bottom-0 right-0'/>
+      <img src={Heroimg} alt="" className='md:w-1/4 w-2/5 absolute bottom-0 right-0'/>
     </div>
     
   )
