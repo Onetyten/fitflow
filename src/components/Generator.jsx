@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SectionWrapper from './SectionWrapper'
 import Button from './Button'
+import { SCHEMES, WORKOUTS } from '../Utils/regiment'
 
 
 function Header(props) {
@@ -20,18 +21,124 @@ function Header(props) {
   )
 }
 
-export default function Generator() {
-  return (
-    <SectionWrapper header ='Generate your workout' title={['Your','personalized','fitness','journey','awaits.' ]}  >
-      <Header index = '1' title='Choose your adventure' description='Discover the perfect workout for your goals!' />
+export default function Generator(props) {
+  const [showModal,setShowModal]= useState(false)
+  const{ muscles,setMuscles,goals,setGoals,bodyPart,setBodyPart,updateWorkout} = props
 
-      <div className='flex gap-5'>
-        <Button title = 'Individual'/>
-        <Button title = 'Casual Split'/>
-        <Button title = 'Bodybuilder Split'/>
-        <Button title = 'Upper Lower'/>
+
+
+
+  function ToggleModal() {
+    setShowModal(!showModal)
+  }
+
+  function updateMuscles(muscleGroup) {
+
+    if (muscles.includes(muscleGroup))
+      {
+        setMuscles(muscles.filter(val => val !== muscleGroup))
+        return
+      } 
+    if (muscles.length>2)
+    {
+      return
+    }
+    if (bodyPart !== 'Individual')
+    {
+      setMuscles([muscleGroup])
+      setShowModal(false)
+      return
+    }
+
+
+
+
+    setMuscles([...muscles,muscleGroup])
+
+    if (muscles.length === 2){
+      setShowModal(false)
+    }
+  }
+
+
+
+
+  return (
+    <SectionWrapper header ='Generate your workout' title={['Your','personalized','fitness','journey','awaits.' ]} id='generate' >
+      <Header index = '01' title='Choose your adventure' description='Discover the perfect workout for your goals!' />
+      <div className='grid grid-cols-4 gap-4'>
+
+        {Object.keys(WORKOUTS).map((type,typeIndex) =>{
+          return(
+            <button key={typeIndex} className={'border-2 lg:text-2xl text-md text-greenish-yellow mt-3 lg:mt-6 lg:p-5 p-2 rounded-lg hover:text-white' + (type===bodyPart  ? ' border-white text-white':' border-greenish-yellow text-greenish-yellow')}onClick={()=>{
+              setMuscles([])
+              setBodyPart(type)
+              
+              
+            }}>
+              <p>
+                {type.replaceAll('_',' ')}
+              </p> 
+            </button>
+          )
+
+        })}
+
       </div>
-      <Header index = '2' title='Lock on target' description='Discover the perfect workout for your goals!' />
+
+      <Header index = '02' title='Lock on target' description='What muscles are you training' />
+      <div className='py-3 border-2 border-greenish-yellow lg:text-2xl text-md text-greenish-yellow mt-3 lg:mt-6 rounded-lg hover:border-white w-full hover:text-white '>
+
+        <button className='relative p-5 flex items-center justify-center'  onClick={ToggleModal} >
+          <p className='text-center capitalize'>
+            {muscles.length == 0 ? 'Select muscle groups' : muscles.join(' ') }
+          </p>
+          <i className="fa-solid fa-caret-down absolute -right-3 top-1/2 -translate-y-1/2 hover:text-white"></i>
+        </button>
+        {showModal && (
+          <div className='flex flex-col px-3 pb-3'>
+              {(bodyPart === 'Individual' ? WORKOUTS[bodyPart] : Object.keys(WORKOUTS[bodyPart])).map((muscleGroup, muscleGroupIndex) => {
+              return (
+                  <button onClick={() => {
+                      updateMuscles(muscleGroup)
+                  }} key={muscleGroupIndex} className={'hover:text-greenish-yellow duration-200 text-my-grey ' + (muscles.includes(muscleGroup) ? ' text-white' : ' ')}>
+                      <p className='uppercase'>{muscleGroup.replaceAll('_', ' ')}</p>
+                  </button>
+              )
+               })}
+
+          </div>
+        )}
+
+      </div>
+
+
+
+      <Header index = '03' title='Pick your motive' description='Select your ultimate objective' />
+      <div className='grid grid-cols-3 gap-4 '>
+
+        {Object.keys(SCHEMES).map((scheme,schemeIndex) =>{
+          return(
+            <button key={schemeIndex} className={'border-2 lg:text-2xl text-md text-greenish-yellow mt-3 lg:mt-6 lg:p-5 p-2 rounded-lg hover:text-white' + (scheme===goals  ? ' border-white text-white':' border-greenish-yellow text-greenish-yellow')}onClick={()=>{
+              setGoals (scheme)
+              
+              
+            }}>
+              <p>
+                {scheme.replaceAll('_',' ')}
+              </p> 
+            </button>
+          ) 
+
+        })}
+
+      </div>
+
+      <Button func ={updateWorkout}>
+        Generate workout
+      </Button>
+
+
     </SectionWrapper>
   )
 }

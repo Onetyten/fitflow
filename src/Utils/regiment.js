@@ -1,17 +1,17 @@
 export const TEMPOS = ['3 0 2', '2 2 2', '4 1 1', '5 3 1', '1 0 1', '3 2 1', '2 1 1']
 
 export const SCHEMES = {
-    strength_power: {
+    Strength_power: {
         repRanges: [3, 8],
         ratio: [3, 2],
         rest: [120, 60]
     },
-    growth_hypertrophy: {
+    Growth_hypertrophy: {
         repRanges: [8, 15],
         ratio: [2, 3],
         rest: [90, 60]
     },
-    cardiovascular_endurance: {
+    Cardiovascular_endurance: {
         repRanges: [12, 30],
         ratio: [2, 4],
         rest: [60, 45]
@@ -19,13 +19,13 @@ export const SCHEMES = {
 }
 
 export const WORKOUTS = {
-    individual: ['biceps', 'triceps', 'chest', 'back', 'shoulders', 'quads', 'hamstrings', 'glutes', 'calves', 'abs'],
-    bro_split: {
+    Individual: ['biceps', 'triceps', 'chest', 'back', 'shoulders', 'quads', 'hamstrings', 'glutes', 'calves', 'abs'],
+    Casual_Split: {
         push: ['triceps', 'chest', 'shoulders'],
         pull: ['back', 'shoulders', 'biceps'],
         legs: ['glutes', 'calves', 'hamstrings', 'quads']
     },
-    bodybuilder_split: {
+    Bodybuilder_Split: {
         chest: ['chest'],
         back: ['back'],
         shoulders: ['shoulders'],
@@ -33,7 +33,7 @@ export const WORKOUTS = {
         arms: ['biceps', 'triceps'],
         abs: ['abs']
     },
-    upper_lower: {
+    Upper_Lower: {
         upper: ['triceps', 'biceps', 'shoulders', 'chest', 'back'],
         lower: ['quads', 'calves', 'hamstrings', 'glutes']
     }

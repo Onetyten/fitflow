@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-*{
-    /* font-family: "Arimo", sans-serif; */
-    
+html{
+    scroll-behavior: smooth;
 }
